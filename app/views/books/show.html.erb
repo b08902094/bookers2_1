@@ -1,0 +1,12 @@
+<div>
+  <%= image_tag @book.get_image %>
+  <p>Title：<%= @book.title %></p>
+  <p>Body：<%= @book.body %></p>
+  <p>User：<%= image_tag 'sample-author1.jpg' %></p>
+  <p>Username：<%= @book.user.name %></p>
+  <p>Date：<%= @book.created_at.strftime('%Y/%m/%d') %></p>
+  <% if @book.user == current_user %>
+    <%= link_to "edit book", edit_book_path(@book) %>
+    <%= link_to "delete", book_path(@book), method: :delete %>
+  <% end %>
+</div>
