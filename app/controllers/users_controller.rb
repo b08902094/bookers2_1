@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    post.save(context: :phoge.save(context: :pattern_validation))
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "Your profile has been updated successfully"
