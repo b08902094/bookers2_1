@@ -23,16 +23,21 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    if @book.user.id != current_user.id
+        redirect_to books_path
+    end
   end
 
   def update
+    @user = current_user
+    @books = Book.all
     @book = Book.find(params[:id])
     if @book.update(post_image_params)
       flash[:notice] = "Your book has been updated successfully"
       redirect_to book_path(@book.id)
     else
       flash.now[:notice] = "error: failed to update"
-      render :index
+      render :edit
     end
   end
 

@@ -27,16 +27,16 @@
   <tbody><tr></tr>
   <tr>
 	  <th>name</th>
-	  <th><%= @user.name %></th>
+	  <th><%= @book.user.name %></th>
   </tr>
   <tr>
 	  <th>introduction</th>
-	  <th><%= @user.introduction %></th>
+	  <th><%= @book.user.introduction %></th>
   </tr>
 </tbody></table>
 
 <div class="row">
-  <a class="btn btn-outline-secondary btn-block" href="<%= edit_user_path(current_user.id) %>"><i class="fas fa-user-cog"></i></a></div>
+  <a class="btn btn-outline-secondary btn-block" href="<%= edit_user_path(@book.user.id) %>"><i class="fas fa-user-cog"></i></a></div>
       <h2 class="mt-3">New book</h2>
       <form action="/books" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="JJ3vd_JAMcXyQhgDtMFuMVAl7FBAfW7mg1xM0w3XOaQ3eoR7Nz4XdfQocPLbWPNxYLr0-Z58XKGMYOAx8oiFzw" autocomplete="off">
   <div class="form-group">
