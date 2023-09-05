@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  protect_from_forgery
 
   before_action :authenticate_user!, except: [:top, :about]
 
@@ -7,6 +8,8 @@ class BooksController < ApplicationController
   end
 
   def create
+    @user = current_user
+    @books = Book.all
     @book = Book.new(post_image_params)
     @book.user_id = current_user.id
     if @book.save
@@ -14,7 +17,7 @@ class BooksController < ApplicationController
       redirect_to book_path(@book.id)
     else
       flash.now[:notice] = "error: failed to create"
-      render :new
+      render :index
     end
   end
 
@@ -35,12 +38,13 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
+    @book = Book.new
     @user = User.find(current_user.id)
   end
 
   def show
     @book = Book.find(params[:id])
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
   end
 
   def destroy
